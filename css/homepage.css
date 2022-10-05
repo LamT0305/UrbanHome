@@ -1,0 +1,118 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/* nav bar */
+.navbar-brand {
+  font-size: 30px !important;
+  font-weight: 600;
+  padding-left: 30px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+#navbarNav {
+  flex-grow: 0;
+}
+.des-about {
+  margin-bottom: 0px;
+  font-size: 12px;
+}
+.subnav{
+  font-size: 16px;
+  font-weight:600;
+}
+/* banner */
+#banner {
+  background-image: url(https://images.unsplash.com/photo-1561677978-583a8c7a4b43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjB8fGZ1cm5pdHVyZXxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60);
+  width: 100%;
+  height: 80vh;
+  background-size: cover;
+}
+.banner-details {
+  color: black;
+  font-family: "Times New Roman", Times, serif;
+  margin-left: 80px;
+  margin-bottom: 100px;
+}
+#banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.btn-register-banner {
+  background: none;
+  border-radius: 0px;
+  border-width: 3px;
+  padding: 5px 35px;
+  border-color: gray;
+  color: black;
+}
+/* our mission */
+.contain-our-mission-img {
+  width: 500px;
+}
+.ourmission-img {
+  width: 100%;
+  height: auto;
+}
+#our-mission {
+  display: flex;
+}
+#detail-our-mission {
+  width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* feature-product */
+#feature-product {
+  width: 100%;
+  background-color: #dbdad7;
+}
+#featureheader-des {
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+#products {
+  padding-top: 30px;
+  padding-bottom: 80px;
+}
+.img-products {
+  width: 100%;
+  height: 60%;
+}
+/* content2 */
+.content2 {
+  height: fit-content;
+  display: flex;
+}
+.content-img {
+  width: 50%;
+  height: auto;
+}
+.content-detail {
+  padding-left: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+button.btn-shopAll {
+  width: 30%;
+  border-radius: 25px;
+}
+button.btn-shopAll a {
+  color: white;
+  text-decoration: none;
+}
