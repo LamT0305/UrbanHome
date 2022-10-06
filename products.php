@@ -3,9 +3,9 @@ include("./database/database.php");
 $products_sofa = get_Sofa_produdct($db, $sofa1);
 $products_sofa_corner = get_sofa_corner($db, $sofa_corner);
 $products_lamp = get_lamp($db, $lamp);
-// if($_GET["keyword"]){
-//   $products = searchProducts($db, $_GET["keyword"]);
-// }
+if ($_GET["keyword"]) {
+  $products = searchProducts($db, $_GET["keyword"]);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,7 @@ $products_lamp = get_lamp($db, $lamp);
       <div class="container-fluid navbar-header">
         <a class="navbar-brand" href="./homepage.php">Urban Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"><a href="products-search.php"></a></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
@@ -108,7 +108,7 @@ $products_lamp = get_lamp($db, $lamp);
         ?>
           <div class="container">
             <div class="row">
-              <div class="col sofa-products">
+              <div class="col-md-4 sofa-products">
                 <img src="<?php echo $products_sofa[$i]['images'] ?>" class="img-fluid" alt="Responsive image">
                 <h5 class="name"><a href="" class="products-name"><?php echo $products_sofa[$i]['name'] ?></a></h5>
                 <p class="price"><?php echo $products_sofa[$i]['price'] ?>đ</p>
@@ -129,7 +129,7 @@ $products_lamp = get_lamp($db, $lamp);
         ?>
           <div class="container">
             <div class="row">
-              <div class="col sofa-products">
+              <div class="col-md-4 sofa-products">
                 <img src="<?php echo $products_sofa_corner[$i]['images'] ?>" class="img-fluid" alt="Responsive image">
                 <div class="name">
                   <h5><a href="" class="products-name"><?php echo $products_sofa_corner[$i]['name'] ?></a></h5>
@@ -152,12 +152,9 @@ $products_lamp = get_lamp($db, $lamp);
         ?>
           <div class="container">
             <div class="row">
-              <div class="col sofa-products">
+              <div class="col-md-4 sofa-products">
                 <img src="<?php echo $products_lamp[$i]['images'] ?>" class="img-fluid" alt="Responsive image">
-                <a href="">
-                  <h5><?php echo $products_lamp[$i]['name'] ?></h5>
-                </a>
-                <!-- <h5 class="name"><a href="" class="products-name"><?php echo $products_lamp[$i]['name'] ?></a></h5> -->
+                <h5><a href="" class="products-name"><?php echo $products_lamp[$i]['name'] ?></a></h5>
                 <p class="price"><?php echo $products_lamp[$i]['price'] ?>đ</p>
               </div>
             </div>
@@ -167,105 +164,127 @@ $products_lamp = get_lamp($db, $lamp);
         ?>
       </div>
     </div>
+    <!-- test -->
+    <div class="test">
+      <ul class="list-items">
+        <?php
+        for ($i = 0; $i < count($products); $i++) {
+        ?>
+        
+          <div class="test-items">
+            <li class="items"><img src="<?php echo $products[$i]['images'] ?>" alt="" class="item-img"></li>
+            <li class="products-name"><?php echo $products[$i]['name'] ?></li>
+            <li class="price"><?php echo $products[$i]['price'] ?></li>
+          </div>
+
+        <?php
+        }
+        ?>
+      </ul>
+    </div>
 
 
   </section>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   <!-- Footer -->
-  <footer class="text-center text-lg-start bg-white text-muted">
-    <!-- Section: Social media -->
+  <section class="footer">
+    <hr>
+    <footer class="text-center text-lg-start bg-white text-muted">
+      <!-- Section: Social media -->
 
-    <!-- Section: Links  -->
-    <section class="">
-      <div class="container text-center text-md-start mt-5">
-        <!-- Grid row -->
-        <div class="row mt-3">
-          <!-- Grid column -->
-          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            <!-- Content -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              <i class="fas fa-gem me-3 text-secondary"></i>Company name
-            </h6>
-            <p>
-              Here you can use rows and columns to organize your footer
-              content. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit.
-            </p>
-          </div>
-          <!-- Grid column -->
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                <i class="fas fa-gem me-3 text-secondary"></i>Company name
+              </h6>
+              <p>
+                Here you can use rows and columns to organize your footer
+                content. Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit.
+              </p>
+            </div>
+            <!-- Grid column -->
 
-          <!-- Grid column -->
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">Products</h6>
-            <p>
-              <a href="#!" class="text-reset">Angular</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">React</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Vue</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Laravel</a>
-            </p>
-          </div>
-          <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Products</h6>
+              <p>
+                <a href="#!" class="text-reset">Angular</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">React</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Vue</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Laravel</a>
+              </p>
+            </div>
+            <!-- Grid column -->
 
-          <!-- Grid column -->
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
-            <p>
-              <a href="#!" class="text-reset">Pricing</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Settings</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Orders</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Help</a>
-            </p>
-          </div>
-          <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+              <p>
+                <a href="#!" class="text-reset">Pricing</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Settings</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Orders</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Help</a>
+              </p>
+            </div>
+            <!-- Grid column -->
 
-          <!-- Grid column -->
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-            <p>
-              <i class="fas fa-home me-3 text-secondary"></i> New York, NY
-              10012, US
-            </p>
-            <p>
-              <i class="fas fa-envelope me-3 text-secondary"></i>
-              info@example.com
-            </p>
-            <p>
-              <i class="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88
-            </p>
-            <p>
-              <i class="fas fa-print me-3 text-secondary"></i> + 01 234 567 89
-            </p>
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+              <p>
+                <i class="fas fa-home me-3 text-secondary"></i> New York, NY
+                10012, US
+              </p>
+              <p>
+                <i class="fas fa-envelope me-3 text-secondary"></i>
+                info@example.com
+              </p>
+              <p>
+                <i class="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88
+              </p>
+              <p>
+                <i class="fas fa-print me-3 text-secondary"></i> + 01 234 567 89
+              </p>
+            </div>
+            <!-- Grid column -->
           </div>
-          <!-- Grid column -->
+          <!-- Grid row -->
         </div>
-        <!-- Grid row -->
-      </div>
-    </section>
-    <!-- Section: Links  -->
+      </section>
+      <!-- Section: Links  -->
 
-    <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025)">
-      © 2021 Copyright:
-      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-    </div>
-    <!-- Copyright -->
-  </footer>
-  <!-- Footer -->
+      <!-- Copyright -->
+      <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025)">
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+  </section>
 </body>
 
 </html>

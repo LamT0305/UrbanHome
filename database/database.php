@@ -29,3 +29,10 @@ function get_lamp($db, $lamp){
     $products_lamp = $query -> fetchAll(PDO::FETCH_ASSOC);
     return $products_lamp;
 }
+function searchProducts($db, $keyword){
+    $query = $db -> query("SELECT * FROM products WHERE name LIKE '%$keyword%'");
+    $products = $query -> fetchAll(PDO::FETCH_ASSOC);
+
+    return $products;
+    $keyword = "";
+}
