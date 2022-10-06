@@ -1,11 +1,10 @@
 <?php
 include("./database/database.php");
-$products_sofa = get_Sofa_produdct($db, $sofa1);
-$products_sofa_corner = get_sofa_corner($db, $sofa_corner);
-$products_lamp = get_lamp($db, $lamp);
-if ($_GET["keyword"]) {
-  $products = searchProducts($db, $_GET["keyword"]);
-}
+$products = getAllProdudct($db, $sofa1);
+
+// if ($_GET["keyword"]) {
+//   $products = searchProducts($db, $_GET["keyword"]);
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,89 +98,31 @@ if ($_GET["keyword"]) {
     </div>
   </section>
   <section id="products">
-    <!-- sofa -->
-    <div class="products-container">
-      <h4><a class="header-products" href="#products-sofa">Sofa</a></h4>
-      <div id="products-sofa">
-        <?php
-        for ($i = 0; $i < count($products_sofa); $i++) {
-        ?>
-          <div class="container">
-            <div class="row">
-              <div class="col-md-4 sofa-products">
-                <img src="<?php echo $products_sofa[$i]['images'] ?>" class="img-fluid" alt="Responsive image">
-                <h5 class="name"><a href="" class="products-name"><?php echo $products_sofa[$i]['name'] ?></a></h5>
-                <p class="price"><?php echo $products_sofa[$i]['price'] ?>đ</p>
-              </div>
-            </div>
-          </div>
-        <?php
-        }
-        ?>
-      </div>
-    </div>
-    <!-- sofa corner -->
-    <div class="products-container">
-      <h4><a class="header-products" href="#products-sofa">Sofa Góc</a></h4>
-      <div id="products-sofa">
-        <?php
-        for ($i = 0; $i < count($products_sofa_corner); $i++) {
-        ?>
-          <div class="container">
-            <div class="row">
-              <div class="col-md-4 sofa-products">
-                <img src="<?php echo $products_sofa_corner[$i]['images'] ?>" class="img-fluid" alt="Responsive image">
-                <div class="name">
-                  <h5><a href="" class="products-name"><?php echo $products_sofa_corner[$i]['name'] ?></a></h5>
-                </div>
-                <p class="price"><?php echo $products_sofa_corner[$i]['price'] ?>đ</p>
-              </div>
-            </div>
-          </div>
-        <?php
-        }
-        ?>
-      </div>
-    </div>
-    <!-- lamp -->
-    <div class="products-container">
-      <h4><a class="header-products" href="#products-sofa">Sofa Góc</a></h4>
-      <div id="products-sofa">
-        <?php
-        for ($i = 0; $i < count($products_lamp); $i++) {
-        ?>
-          <div class="container">
-            <div class="row">
-              <div class="col-md-4 sofa-products">
-                <img src="<?php echo $products_lamp[$i]['images'] ?>" class="img-fluid" alt="Responsive image">
-                <h5><a href="" class="products-name"><?php echo $products_lamp[$i]['name'] ?></a></h5>
-                <p class="price"><?php echo $products_lamp[$i]['price'] ?>đ</p>
-              </div>
-            </div>
-          </div>
-        <?php
-        }
-        ?>
-      </div>
-    </div>
-    <!-- test -->
-    <div class="test">
-      <ul class="list-items">
+    <div class="container-products">
+      <div class="wrapper-items">
         <?php
         for ($i = 0; $i < count($products); $i++) {
         ?>
-        
-          <div class="test-items">
-            <li class="items"><img src="<?php echo $products[$i]['images'] ?>" alt="" class="item-img"></li>
-            <li class="products-name"><?php echo $products[$i]['name'] ?></li>
-            <li class="price"><?php echo $products[$i]['price'] ?></li>
+
+          <div class="row list-items">
+            <div class="col-sm items">
+              <div class="products-img" >
+                <img src="<?php echo $products[$i]['images'] ?>" alt="" width="350px" height="250px">
+              </div>
+
+              <div class="details">
+                <h5><a href=""><?php echo $products[$i]['name'] ?></a></h5>
+                <p><?php echo $products[$i]['price'] ?>đ</p>
+              </div>
+            </div>
           </div>
 
         <?php
         }
         ?>
-      </ul>
+      </div>
     </div>
+
 
 
   </section>

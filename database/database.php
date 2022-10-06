@@ -13,9 +13,9 @@ try {
     print "Error!" . $e->getMessage() . "<n/>";
     die();
 }
-function get_Sofa_produdct($db, $sofa1)
+function getAllProdudct($db)
 {
-    $query = $db->query("SELECT * FROM products WHERE category LIKE '%$sofa1%' ");
+    $query = $db->query("SELECT * FROM products");
     $products_sofa = $query->fetchAll(PDO::FETCH_ASSOC);
     return $products_sofa;
 }
