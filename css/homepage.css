@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 /* nav bar */
 .navbar-brand {
   font-size: 30px !important;
@@ -21,9 +22,13 @@
   margin-bottom: 0px;
   font-size: 12px;
 }
-.subnav{
+.subnav {
   font-size: 16px;
-  font-weight:600;
+  font-weight: 600;
+}
+
+.form-inline {
+  display: flex;
 }
 /* banner */
 #banner {

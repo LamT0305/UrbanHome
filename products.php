@@ -24,17 +24,17 @@ $products = getAllProdudct($db, $sofa1);
       <div class="container-fluid navbar-header">
         <a class="navbar-brand" href="./homepage.php">Urban Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"><a href="products-search.php"></a></span>
+          <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <form class="input-group" role="search" method="GET">
-                <input type="search" name="keyword" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button type="submit" class="btn btn-outline-primary">
-                  search
-                </button>
-              </form>
+              <nav class="navbar navbar-light bg-light">
+                <form class="form-inline">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </nav>
             </li>
             <li class="nav-item">
               <img src="https://img.icons8.com/ios/32/000000/apple-phone.png" width="32px" height="32px" />
@@ -98,21 +98,20 @@ $products = getAllProdudct($db, $sofa1);
     </div>
   </section>
   <section id="products">
-    <div class="container-products">
-      <div class="wrapper-items">
+    <div class="container">
+      <div class="row">
         <?php
         for ($i = 0; $i < count($products); $i++) {
         ?>
 
-          <div class="row list-items">
-            <div class="col-sm items">
-              <div class="products-img" >
-                <img src="<?php echo $products[$i]['images'] ?>" alt="" width="350px" height="250px">
-              </div>
-
-              <div class="details">
-                <h5><a href=""><?php echo $products[$i]['name'] ?></a></h5>
-                <p><?php echo $products[$i]['price'] ?>đ</p>
+          <div class="col">
+            <div class="card" style="width: 18rem;">
+              <img src="<?php echo $products[$i]['images'] ?>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="title"><?php echo $products[$i]['name'] ?></h5>
+                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                <p class="price"><?php echo $products[$i]['price'] ?>đ</p>
+                <a href="./products-detail.php" class="btn btn-primary">View Product</a>
               </div>
             </div>
           </div>

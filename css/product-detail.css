@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* nav bar */
+.navbar-brand {
+  font-size: 30px !important;
+  font-weight: 600;
+  padding-left: 30px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+#navbarNav {
+  flex-grow: 0;
+}
+
+.des-about {
+  margin-bottom: 0px;
+  font-size: 12px;
+}
+
+.subnav {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.form-inline{
+    display: flex;
+}
