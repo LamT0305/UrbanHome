@@ -2,9 +2,10 @@
 include("./database/database.php");
 $products = getAllProdudct($db, $sofa1);
 
-// if ($_GET["keyword"]) {
-//   $products = searchProducts($db, $_GET["keyword"]);
-// }
+if ($_GET && $_GET["keyword"]) {
+  $products = searchProducts($db, $_GET["keyword"]);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,8 +31,8 @@ $products = getAllProdudct($db, $sofa1);
           <ul class="navbar-nav">
             <li class="nav-item">
               <nav class="navbar navbar-light bg-light">
-                <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="form-inline" role="search" method="GET">
+                  <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
                   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
               </nav>
@@ -111,7 +112,7 @@ $products = getAllProdudct($db, $sofa1);
                 <h5 class="title"><?php echo $products[$i]['name'] ?></h5>
                 <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 <p class="price"><?php echo $products[$i]['price'] ?>đ</p>
-                <a href="./products-detail.php" class="btn btn-primary">View Product</a>
+                <a href="./products-detail.php?id=<?php echo $products[$i]['id']?>" class="btn btn-primary">View Product</a>
               </div>
             </div>
           </div>

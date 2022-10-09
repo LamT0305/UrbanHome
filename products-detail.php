@@ -1,3 +1,10 @@
+<?
+include("./database/database.php");
+if ($_GET && $_GET['id']) {
+    $id = $_GET['id'];
+    $products = getElementByID($db, $id);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./css/product-detail.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
 </head>
 
@@ -71,29 +79,47 @@
         </nav>
     </section>
     <section class="slide-img">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://nhaxinh.com/wp-content/uploads/2022/07/SOFA-CICO-GT-A111-02-A106-06.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://nhaxinh.com/wp-content/uploads/2022/07/SOFA-CICO-GT-A111-02-A106-06.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://nhaxinh.com/wp-content/uploads/2022/07/SOFA-CICO-GT-A111-02-A106-06.jpg" alt="Third slide">
-                </div>
+        <div class="img-slider">
+            <div class="items">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" class="img-fluid" alt="Responsive image">
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+            <div class="items">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="items">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="items">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="items">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="items">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" class="img-fluid" alt="Responsive image">
+            </div>
         </div>
+        <div class="details">
+            <h5 class="product-name">
+                Armchair Leonard Leat/Meta 37528P
+            </h5>
+            <p class="price">28,520,000₫</p>
+            <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Vật Liệu:</span> khung kim loại, nhồi nệm bọc da tổng hợp</p>
+            <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Kích Thước:</span> D600 - R770 - H730 mm</p>
+            <div class="button">
+                <button type="button" class="btn btn-secondary">Mua Ngay</button>
+                <button type="button" class="btn btn-light">Thêm vào giỏ hàng</button>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     </section>
+    <script src="./app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <!-- Footer -->
     <section class="footer">
         <hr>

@@ -19,20 +19,17 @@ function getAllProdudct($db)
     $products_sofa = $query->fetchAll(PDO::FETCH_ASSOC);
     return $products_sofa;
 }
-function get_sofa_corner($db, $sofa_corner){
-    $query = $db -> query("SELECT * FROM products WHERE category LIKE '%$sofa_corner%' ");
-    $products_sofa_corner = $query -> fetchAll(PDO::FETCH_ASSOC);
-    return $products_sofa_corner;
-}
-function get_lamp($db, $lamp){
-    $query = $db -> query("SELECT * FROM products WHERE category LIKE '%$lamp%' ");
-    $products_lamp = $query -> fetchAll(PDO::FETCH_ASSOC);
-    return $products_lamp;
-}
-function searchProducts($db, $keyword){
-    $query = $db -> query("SELECT * FROM products WHERE name LIKE '%$keyword%'");
-    $products = $query -> fetchAll(PDO::FETCH_ASSOC);
+
+function searchProducts($db, $keyword)
+{
+    $query = $db->query("SELECT * FROM products WHERE name LIKE '%$keyword%'");
+    $products = $query->fetchAll(PDO::FETCH_ASSOC);
 
     return $products;
-    $keyword = "";
+}
+function getElementByID($db, $id)
+{
+    $query = $db->query("SELECT * FROM `products` WHERE id = $id");
+    $products = $query -> fetchAll(PDO::FETCH_ASSOC);
+    return $products;
 }
