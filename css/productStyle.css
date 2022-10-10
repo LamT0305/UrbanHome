@@ -31,7 +31,7 @@
   font-weight: 600;
 }
 
-.form-inline{
+.form-inline {
   display: flex;
 }
 /* banner */
@@ -41,14 +41,18 @@
   height: 60vh;
   background-size: cover;
 }
-
-#filters {
+/* filter */
+.filters {
   display: flex;
-  justify-content: space-between;
+  justify-content: inherit;
+  padding: 15px 0;
   align-items: center;
-  padding: 20px 70px;
 }
-
+.title-ft {
+}
+.dropdown-menu{
+  display: block;
+}
 /* products */
 div.card {
   height: 22rem;
@@ -72,10 +76,11 @@ div.card {
   flex-direction: column;
   justify-content: space-evenly;
 }
-h5.title, p.price{
+h5.title,
+p.price {
   margin: 0;
 }
-.btn{
+.btn {
   width: 53%;
 }
 /* Custom scroll bar */

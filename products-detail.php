@@ -28,8 +28,8 @@ if ($_POST && $_POST['quantity']) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./css/product-detail.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
 
 <body>
@@ -85,38 +85,60 @@ if ($_POST && $_POST['quantity']) {
             </div>
         </nav>
     </section>
-    <section class="slide-img">
-        <form action="" method="POST">
-            <div class="slide-show">
-                <div>
-                    <img src="https://images.unsplash.com/photo-1485081669829-bacb8c7bb1f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fG5hdHVyYWx8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" class="img-product">
-                </div>
+    <div class="img-slider">
+        <div class="img-item">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1500828131278-8de6878641b8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fG5hdHVyYWx8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="img-product" alt="">
             </div>
-
-            <div class="details">
-                <h5 class="product-name">
-                    Armchair Leonard Leat/Meta 37528P
-                </h5>
-                <p class="price">28,520,000₫</p>
-                <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Vật Liệu:</span> khung kim loại, nhồi nệm bọc da tổng hợp</p>
-                <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Kích Thước:</span> D600 - R770 - H730 mm</p>
-                <input type="number" name="quantity" max=100, min=0>
-                <div class="button">
-                    <button type="submit" class="btn btn-secondary">Mua Ngay</button>
-                    <button type="submit" class="btn btn-light">Thêm vào giỏ hàng</button>
-                </div>
+        </div>
+        <div class="img-item">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1520962922320-2038eebab146?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bmF0dXJhbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="img-product" alt="">
             </div>
-        </form>
-
-
-        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    </section>
-    <script src="./app.js"></script>
+        </div>
+        <div class="img-item">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1441239372925-ac0b51c4c250?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG5hdHVyYWx8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="img-product" alt="">
+            </div>
+        </div>
+        <div class="img-item">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1585016495481-91613a3ab1bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bmF0dXJhbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="img-product" alt="">
+            </div>
+        </div>
+        <div class="img-item">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1449673029231-c71b7b47cf5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fG5hdHVyYWx8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="img-product" alt="">
+            </div>
+        </div>
+        <div class="img-item">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1519408299519-b7a0274f7d67?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDF8fG5hdHVyYWx8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="img-product" alt="">
+            </div>
+        </div>
+    </div>
+    <form action="" method="POST" id="form_post">
+        <div class="details">
+            <h5 class="product-name">
+                Armchair Leonard Leat/Meta 37528P
+            </h5>
+            <p class="price">28,520,000₫</p>
+            <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Vật Liệu:</span> khung kim loại, nhồi nệm bọc da tổng hợp</p>
+            <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Kích Thước:</span> D600 - R770 - H730 mm</p>
+            <input type="number" name="quantity" max=100, min=0>
+            <div class="button">
+                <button type="submit" class="btn btn-secondary">Mua Ngay</button>
+                <button type="submit" class="btn btn-light">Thêm vào giỏ hàng</button>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="./js//app.js"></script>
     <!-- Footer -->
     <section class="footer">
         <hr>

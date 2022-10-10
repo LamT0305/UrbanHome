@@ -85,18 +85,21 @@ if ($_GET && $_GET["keyword"]) {
     </div>
   </section>
   <section id="filters">
-    <p style="margin: 0;" role="button">Bộ Lọc</p>
-    <h3>Tất Cả Sản Phẩm</h3>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Sắp xếp theo:
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+    <div class="row title-ft">
+      <div class="col-sm filters">
+        <!-- <p style="margin: 0;" role="button">Bộ Lọc</p> -->
+        <h3>Tất Cả Sản Phẩm</h3>
+        <div class="dropdown_menu">
+          <label for="sortItem" style="font-size: 18px;font-weight: 500;">Sắp xếp theo: </label>
+          <select name="sortItem" id="sortItem">
+            <option value="sort_by_price1" selected>Giá tăng dần</option>
+            <option value="sort_by_price">Giá giảm dần</option>
+            <option value="sort_by_name">Tên sản phẩm</option>
+          </select>
+        </div>
       </div>
     </div>
+
   </section>
   <section id="products">
     <div class="container">
@@ -112,7 +115,7 @@ if ($_GET && $_GET["keyword"]) {
                 <h5 class="title"><?php echo $products[$i]['name'] ?></h5>
                 <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 <p class="price"><?php echo $products[$i]['price'] ?>đ</p>
-                <a href="./products-detail.php?id=<?php echo $products[$i]['id']?>" class="btn btn-primary">View Product</a>
+                <a href="./products-detail.php?id=<?php echo $products[$i]['id'] ?>" class="btn btn-primary">View Product</a>
               </div>
             </div>
           </div>
