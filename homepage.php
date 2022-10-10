@@ -20,14 +20,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <nav class="navbar navbar-light bg-light">
-                <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-              </nav>
-            </li>
+
             <li class="nav-item">
               <img src="https://img.icons8.com/ios/32/000000/apple-phone.png" width="32px" height="32px" />
               <p class="des-about">
@@ -41,7 +34,7 @@
             </li>
             <li class="nav-item">
               <img src="https://img.icons8.com/ios/32/000000/shopping-cart.png" width="32px" height="32px" />
-              <p class="des-about" role="button">Giỏ hàng</p>
+              <a style="text-decoration: none; color:black;" href="./cart.php">Giỏ hàng</a>
             </li>
           </ul>
         </div>

@@ -30,6 +30,28 @@ function searchProducts($db, $keyword)
 function getElementByID($db, $id)
 {
     $query = $db->query("SELECT * FROM `products` WHERE id = $id");
-    $products = $query -> fetchAll(PDO::FETCH_ASSOC);
+    $products = $query -> fetch(PDO::FETCH_ASSOC);
     return $products;
+}
+function addToCart($db, $quantity, $product_id){
+    $query = $db -> query("INSERT INTO `cart_item` (`product_id`, `quantity`, `cart_id`) VALUES ($product_id, $quantity, 1)");
+    $result = $query -> execute();
+    return $result;
+}
+function get_cart_item($db){
+    $query = $db -> query("SELECT * FROM `cart_item` WHERE cart_id=1");
+    $cart_item = $query -> fetchAll(PDO::FETCH_ASSOC);
+    $products = [];
+    foreach($cart_item as $item){
+        $product_id = $item['product_id'];
+        $product = getElementByID($db, $product_id);
+        $product['quantity'] = $item['quantity'];
+        array_push($products, $product);
+    }
+    return $products;
+}
+function delete_cart_item($db, $id){
+    $query = $db -> query("DELETE FROM `cart_item` WHERE `product_id` = $id");
+    $result = $query -> execute();
+    return $result;
 }

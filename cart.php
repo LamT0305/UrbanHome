@@ -1,23 +1,6 @@
-<?
-include("./database/database.php");
-if ($_GET && $_GET['id']) {
-    $id = $_GET['id'];
-    $products = getElementByID($db, $id);
-}
-if ($_POST && $_POST['quantity']) {
-    $product_id = $_GET['id'];
-    $quantity = $_POST['quantity'];
-
-    $result = addToCart($db, $product_id, $quantity);
-    if ($result) {
-?>
-        <script>
-            alert('Item is added to cart');
-        </script>
 <?php
-
-    }
-}
+include('./database/database.php');
+$cart_item = get_cart_item($db);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +10,7 @@ if ($_POST && $_POST['quantity']) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./css/product-detail.css" />
+    <link rel="stylesheet" href="./css/cart_item.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
 </head>
@@ -42,7 +25,6 @@ if ($_POST && $_POST['quantity']) {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-
                         <li class="nav-item">
                             <img src="https://img.icons8.com/ios/32/000000/apple-phone.png" width="32px" height="32px" />
                             <p class="des-about">
@@ -85,34 +67,36 @@ if ($_POST && $_POST['quantity']) {
             </div>
         </nav>
     </section>
-    <section class="slide-img">
-        <form action="" method="POST">
-            <div class="slide-show">
-                <div>
-                    <img src="https://images.unsplash.com/photo-1485081669829-bacb8c7bb1f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fG5hdHVyYWx8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" class="img-product">
+    <h4>Giỏ Hàng:</h4>
+    <section class="show_item">
+        <div class="row">
+            <?php
+            for ($i = 0; $i < count($cart_item); $i++) {
+            ?>
+                <div class="col item">
+                    <div class="img-product">
+                        <img src="<?php echo $cart_item[$i]['images'] ?>" class="img-fluid" alt="Responsive image">
+                    </div>
+                    <div class="details">
+                        <h5><?php echo $cart_item[$i]['name'] ?></h5>
+                        <p>Price: <span id="price"><?php echo $cart_item[$i]['price'] ?></span></p>
+                        <input type="number" id="quantity" value="<?php echo $cart_item[$i]['quantity'] ?>" onchange="onPress()">
+                        <p>Tổng thanh toán: <span id="total"></span>đ</p>
+                        <p >Mã Sản Phẩm: <span id="productId"><?php echo $cart_item[$i]['id'] ?></span></p>
+                        <button type="submit" class="btn btn-secondary">Mua Ngay</button>
+                    </div>
+
                 </div>
-            </div>
+            <?php
+            }
+            ?>
 
-            <div class="details">
-                <h5 class="product-name">
-                    Armchair Leonard Leat/Meta 37528P
-                </h5>
-                <p class="price">28,520,000₫</p>
-                <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Vật Liệu:</span> khung kim loại, nhồi nệm bọc da tổng hợp</p>
-                <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Kích Thước:</span> D600 - R770 - H730 mm</p>
-                <input type="number" name="quantity" max=100, min=0>
-                <div class="button">
-                    <button type="submit" class="btn btn-secondary">Mua Ngay</button>
-                    <button type="submit" class="btn btn-light">Thêm vào giỏ hàng</button>
-                </div>
-            </div>
-        </form>
-
-
-        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        </div>
     </section>
+
+
+    <script src="./js/cart.js"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>;
     <script src="./app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

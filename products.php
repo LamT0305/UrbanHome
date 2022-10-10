@@ -50,7 +50,7 @@ if ($_GET && $_GET["keyword"]) {
             </li>
             <li class="nav-item">
               <img src="https://img.icons8.com/ios/32/000000/shopping-cart.png" width="32px" height="32px" />
-              <p class="des-about" role="button">Giỏ hàng</p>
+              <a style="text-decoration: none; color:black;" href="./cart.php">Giỏ hàng</a>
             </li>
           </ul>
         </div>
