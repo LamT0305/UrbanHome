@@ -1,6 +1,8 @@
 <?php
 include('./database/database.php');
 $cart_item = get_cart_item($db);
+echo "<pre>";
+var_dump($cart_item);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +77,7 @@ $cart_item = get_cart_item($db);
             ?>
                 <div class="col item">
                     <div class="img-product">
-                        <img src="<?php echo $cart_item[$i]['images'] ?>" class="img-fluid" alt="Responsive image">
+                        <img src="<?php echo $cart_item[$i]['image_1'] ?>" class="img-fluid" alt="Responsive image">
                     </div>
                     <div class="details">
                         <h5><?php echo $cart_item[$i]['name'] ?></h5>

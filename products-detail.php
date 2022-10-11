@@ -3,6 +3,7 @@ include("./database/database.php");
 if ($_GET && $_GET['id']) {
     $id = $_GET['id'];
     $products = getElementByID($db, $id);
+    $product_img = getElementImagesByID($db, $id);
 }
 if ($_POST && $_POST['quantity']) {
     $product_id = $_GET['id'];
@@ -86,52 +87,45 @@ if ($_POST && $_POST['quantity']) {
         </nav>
     </section>
     <div class="img-slider">
-        <div class="img-item">
-            <div class="image">
-                <img src="https://images.unsplash.com/photo-1500828131278-8de6878641b8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fG5hdHVyYWx8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="img-product" alt="">
-            </div>
-        </div>
-        <div class="img-item">
-            <div class="image">
-                <img src="https://images.unsplash.com/photo-1520962922320-2038eebab146?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bmF0dXJhbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="img-product" alt="">
-            </div>
-        </div>
-        <div class="img-item">
-            <div class="image">
-                <img src="https://images.unsplash.com/photo-1441239372925-ac0b51c4c250?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG5hdHVyYWx8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="img-product" alt="">
-            </div>
-        </div>
-        <div class="img-item">
-            <div class="image">
-                <img src="https://images.unsplash.com/photo-1585016495481-91613a3ab1bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bmF0dXJhbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="img-product" alt="">
-            </div>
-        </div>
-        <div class="img-item">
-            <div class="image">
-                <img src="https://images.unsplash.com/photo-1449673029231-c71b7b47cf5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fG5hdHVyYWx8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="img-product" alt="">
-            </div>
-        </div>
-        <div class="img-item">
-            <div class="image">
-                <img src="https://images.unsplash.com/photo-1519408299519-b7a0274f7d67?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDF8fG5hdHVyYWx8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="img-product" alt="">
-            </div>
-        </div>
+        <?php
+        $arrayImg;
+        for ($i = 0; $i < count($product_img); $i++) {
+            $arrayImg[$i] = explode(",", $product_img[$i]['image_1']);
+            for ($j = 0; $j < count($arrayImg[$i]); $j++) {
+        ?>
+                <div class="img-item">
+                    <div class="image">
+                        <img src="<?php echo $arrayImg[$i][$j] ?>" class="img-product" alt="">
+                    </div>
+                </div>
+        <?php
+            }
+        }
+        ?>
+
     </div>
-    <form action="" method="POST" id="form_post">
-        <div class="details">
-            <h5 class="product-name">
-                Armchair Leonard Leat/Meta 37528P
-            </h5>
-            <p class="price">28,520,000₫</p>
-            <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Vật Liệu:</span> khung kim loại, nhồi nệm bọc da tổng hợp</p>
-            <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Kích Thước:</span> D600 - R770 - H730 mm</p>
-            <input type="number" name="quantity" max=100, min=0>
-            <div class="button">
-                <button type="submit" class="btn btn-secondary">Mua Ngay</button>
-                <button type="submit" class="btn btn-light">Thêm vào giỏ hàng</button>
-            </div>
+    <section class="form">
+        <div class="description">
+            <h5><span style="border-bottom:1px solid;">Mô tả:</span></h5>
+            <p><?php echo $products['description'] ?></p>
         </div>
-    </form>
+        <form action="" method="POST" id="form_post">
+            <div class="details">
+                <h5 class="product-name">
+                    <?php echo $products['name'] ?>
+                </h5>
+                <p class="price" style="color: #f25041;">Giá Tiền: <span id="price" style="color: black;"><?php echo $products['price'] ?>đ</span></p>
+                <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Vật Liệu:</span> <?php echo $products['chat_lieu'] ?></p>
+                <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Kích Thước:</span> <?php echo $products['size'] ?></p>
+                <input type="number" name="quantity" max=100, min=0 style="width: 150px;">
+                <div class="button">
+                    <button type="submit" class="btn btn-secondary">Mua Ngay</button>
+                    <button type="submit" class="btn btn-light">Thêm vào giỏ hàng</button>
+                </div>
+            </div>
+        </form>
+    </section>
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

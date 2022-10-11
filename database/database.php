@@ -29,9 +29,14 @@ function searchProducts($db, $keyword)
 }
 function getElementByID($db, $id)
 {
-    $query = $db->query("SELECT * FROM `products` WHERE id = $id");
+    $query = $db->query("SELECT * FROM `product_details` WHERE id = $id");
     $products = $query -> fetch(PDO::FETCH_ASSOC);
     return $products;
+}
+function getElementImagesByID($db, $id){
+    $query = $db -> query("SELECT image_1 FROM `product_details` WHERE id = $id");
+    $products_img = $query -> fetchAll(PDO::FETCH_ASSOC);
+    return $products_img;
 }
 function addToCart($db, $quantity, $product_id){
     $query = $db -> query("INSERT INTO `cart_item` (`product_id`, `quantity`, `cart_id`) VALUES ($product_id, $quantity, 1)");
