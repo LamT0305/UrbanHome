@@ -9,7 +9,7 @@ function onPress() {
   
     for (var i = 0; i < prices.length; i++) {
       if (quantities[i].value <= 0) {
-        let confirmed = confirm("are you sure ?");
+        let confirmed = confirm("Delete item?");
         if (!confirmed) {
           quantities[i].value = 1;
         } else {
@@ -26,7 +26,8 @@ function onPress() {
           })
         }
         console.log(confirmed);
-      } else {
+      } 
+      else {
         // Tính giá tiền cho từng sản phẩm
         var price = prices[i].innerText * quantities[i].value;
         console.log(prices[i].innerText);
@@ -39,39 +40,27 @@ function onPress() {
   
         // Tính tổng tiền
         total += price;
+        $.ajax({
+          url: 'product-function.php',
+          type: 'POST',
+          data:{
+            method:'update', 
+            cart_item_id:ids[i].innerText,
+            new_quantity: quantities[i].value
+          },
+          success:function(data){
+            console.log(data)
+          }
+        })
       }
     }
     // Hiển thị tổng tiền
     // totalMoney.innerText = total;
+   
   }
   window.onload = onPress();
   
-//   let ul = document.getElementById("suggestedSample");
-  
-//   function addToCart(event) {
-//     if (event.target.classList.contains("add")) {
-//       let price = event.target.previousElementSibling;
-//       let name = price.previousElementSibling;
-  
-//       console.log(name);
-//       console.log(price);
-  
-//       let div = document.createElement("div");
-//       div.innerHTML = `
-//       <div id="orderlist" style="display: flex; justify-content: space-around">
-//             <p id="productName">${name.innerText}</p>
-//             <p id="price">${price.innerText}</p>
-//             <input type="number" id="quantity" onchange="onPress()" value="1" />
-      
-//             <p id="total">${price.innerText}</p>
-//           </div>`;
-  
-//       let listProduct = document.getElementById("list-products");
-//       listProduct.appendChild(div);
-//       onPress();
-//     }
-//   }
-  
+
 //   ul.addEventListener("click", addToCart);
   //set up clik event cho ul => khi click vao button add
   //=>get  name + price cua product do

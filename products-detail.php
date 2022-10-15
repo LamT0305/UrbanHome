@@ -117,7 +117,7 @@ if ($_POST && $_POST['quantity']) {
                 <p class="price" style="color: #f25041;">Giá Tiền: <span id="price" style="color: black;"><?php echo $products['price'] ?>đ</span></p>
                 <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Vật Liệu:</span> <?php echo $products['chat_lieu'] ?></p>
                 <p> <span style="font-weight: 600; font-size:20px; border-bottom:1px solid rgb(230, 225, 225);">Kích Thước:</span> <?php echo $products['size'] ?></p>
-                <input type="number" name="quantity" max=100, min=0 style="width: 150px;">
+                <input type="number" name="quantity" max=100 min=0 value="1" style="width: 150px;">
                 <div class="button">
                     <button type="submit" class="btn btn-secondary">Mua Ngay</button>
                     <button type="submit" class="btn btn-light">Thêm vào giỏ hàng</button>

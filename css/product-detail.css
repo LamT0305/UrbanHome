@@ -84,6 +84,7 @@
   align-items: center;
   width: 90%;
   margin: 0 auto;
+  justify-content: center;
 }
 .image {
   width: 80%;

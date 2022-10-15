@@ -1,8 +1,8 @@
 <?php
 include('./database/database.php');
 $cart_item = get_cart_item($db);
-echo "<pre>";
-var_dump($cart_item);
+// echo"<pre>";
+// var_dump($cart_item);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,15 +69,22 @@ var_dump($cart_item);
             </div>
         </nav>
     </section>
-    <h4>Giỏ Hàng:</h4>
+    <h4 style="margin-left:30px;"><?php
+        if(count($cart_item) == 0){
+            echo "Giỏ hàng: bạn chưa thêm đồ vào giỏ hàng!";
+        }else{
+            echo "Giỏ hàng: ";
+        }
+    ?></h4>
     <section class="show_item">
-        <div class="row">
+        <div class="row list-item">
             <?php
             for ($i = 0; $i < count($cart_item); $i++) {
+                $array[$i] = explode(",", $cart_item[$i]['image_1'])
             ?>
                 <div class="col item">
                     <div class="img-product">
-                        <img src="<?php echo $cart_item[$i]['image_1'] ?>" class="img-fluid" alt="Responsive image">
+                        <img src="<?php echo $array[$i][0] ?>" class="img-fluid" alt="Responsive image">
                     </div>
                     <div class="details">
                         <h5><?php echo $cart_item[$i]['name'] ?></h5>
@@ -96,9 +103,9 @@ var_dump($cart_item);
         </div>
     </section>
 
-
-    <script src="./js/cart.js"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>;
+    <script src="./js/cart.js"></script>
+
     <script src="./app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

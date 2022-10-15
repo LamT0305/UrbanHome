@@ -38,9 +38,13 @@ function getElementImagesByID($db, $id){
     $products_img = $query -> fetchAll(PDO::FETCH_ASSOC);
     return $products_img;
 }
-function addToCart($db, $quantity, $product_id){
-    $query = $db -> query("INSERT INTO `cart_item` (`product_id`, `quantity`, `cart_id`) VALUES ($product_id, $quantity, 1)");
-    $result = $query -> execute();
+function addToCart($db, $product_id, $quantity){
+    $query = $db -> prepare("INSERT INTO `cart_item` (`product_id`, `quantity`, `cart_id`) VALUES (:product_id, :quantity, :cart_id)");
+    $result = $query -> execute([
+        "product_id" => $product_id,
+        "quantity" => $quantity,
+        "cart_id" => 1,
+    ]);
     return $result;
 }
 function get_cart_item($db){
@@ -58,5 +62,15 @@ function get_cart_item($db){
 function delete_cart_item($db, $id){
     $query = $db -> query("DELETE FROM `cart_item` WHERE `product_id` = $id");
     $result = $query -> execute();
+    return $result;
+}
+function update_cart_item($db, $cart_item_id, $new_quantity){
+    $query = $db->prepare("UPDATE `cart_item` SET `quantity` = :quantity WHERE `product_id` = :id");
+
+    $result = $query -> execute([
+        'quantity' => $new_quantity,
+        'id' => $cart_item_id,
+    ]);
+    
     return $result;
 }
