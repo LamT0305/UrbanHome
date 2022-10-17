@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&family=Poppins:wght@300&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80);
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+}
+
+.signUpForm {
+    width: 400px;
+    background: rgba(0, 0, 0, 0.1);
+    height: auto;
+    display: flex;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-around;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.text_input {
+    padding: 3px;
+    width: 70%;
+    margin: 5px auto;
+}
+.btn{
+    width: 30%;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid;
+}

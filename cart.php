@@ -36,7 +36,7 @@ $cart_item = get_cart_item($db);
                         </li>
                         <li class="nav-item">
                             <img src="https://img.icons8.com/fluency-systems-regular/32/000000/user.png" width="32px" height="32px" />
-                            <p class="des-about" role="button">Đăng Nhập/ Đăng Ký</p>
+                            <a class="des-about" href="./login.php" style="color:black;">Đăng Nhập/ Đăng Ký</a>
                         </li>
                         <li class="nav-item">
                             <img src="https://img.icons8.com/ios/32/000000/shopping-cart.png" width="32px" height="32px" />
