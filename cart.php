@@ -1,8 +1,7 @@
 <?php
-include('./database/database.php');
+include('./dbconnect/database.php');
 $cart_item = get_cart_item($db);
-// echo"<pre>";
-// var_dump($cart_item);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,9 +33,25 @@ $cart_item = get_cart_item($db);
                                 1900.636.699
                             </p>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item user">
                             <img src="https://img.icons8.com/fluency-systems-regular/32/000000/user.png" width="32px" height="32px" />
-                            <a class="des-about" href="./login.php" style="color:black;">Đăng Nhập/ Đăng Ký</a>
+                            <?php
+                            session_start();
+                            if ($_SESSION && $_SESSION['user']) {
+                                $user = $_SESSION['user']
+                            ?>
+                                <p style="margin: 0;"><a style="color: black;" href="./myProfile.php"><?php echo $user['name'] ?></>
+                                </p>
+                                <div class="logout">
+                                    <button id="btn-log-out"><a href="logout.php">Logout</a></button>
+                                </div>
+                            <?php
+                            } else {
+                            ?>
+                                <a class="des-about" href="./login.php" style="color:black;">Đăng Nhập/ Đăng Ký</a>
+                            <?php
+                            }
+                            ?>
                         </li>
                         <li class="nav-item">
                             <img src="https://img.icons8.com/ios/32/000000/shopping-cart.png" width="32px" height="32px" />
@@ -70,35 +85,39 @@ $cart_item = get_cart_item($db);
         </nav>
     </section>
     <h4 style="margin-left:30px;"><?php
-        if(count($cart_item) == 0){
-            echo "Giỏ hàng: bạn chưa thêm đồ vào giỏ hàng!";
-        }else{
-            echo "Giỏ hàng: ";
-        }
-    ?></h4>
+                                    if (count($cart_item) == 0) {
+                                        echo "Giỏ hàng: bạn chưa thêm đồ vào giỏ hàng!";
+                                    } else {
+                                        echo "Giỏ hàng: ";
+                                    }
+                                    ?></h4>
     <section class="show_item">
         <div class="row list-item">
-            <?php
-            for ($i = 0; $i < count($cart_item); $i++) {
-                $array[$i] = explode(",", $cart_item[$i]['image_1'])
-            ?>
-                <div class="col item">
-                    <div class="img-product">
-                        <img src="<?php echo $array[$i][0] ?>" class="img-fluid" alt="Responsive image">
+            <form action="" method="POST">
+                <?php
+                for ($i = 0; $i < count($cart_item); $i++) {
+                    $array[$i] = explode(",", $cart_item[$i]['image_1'])
+                ?>
+                    <div class="col item">
+                        <div class="img-product">
+                            <img src="<?php echo $array[$i][0] ?>" class="img-fluid" alt="Responsive image">
+                        </div>
+                        <div class="details">
+                            <h5><?php echo $cart_item[$i]['name'] ?></h5>
+                            <p>Price: <span id="price"><?php echo $cart_item[$i]['price'] ?></span></p>
+                            <input type="number" name="quantity" id="quantity" value="<?php echo $cart_item[$i]['quantity'] ?>" onchange="onPress()">
+                            <p>Tổng thanh toán: <span id="total"></span>đ</p>
+                            <p>Mã Sản Phẩm: <span id="productId"><?php echo $cart_item[$i]['id'] ?></span></p>
+                            <button type="submit" class="btn btn-secondary">Mua Ngay</button>
+                        </div>
+                        
                     </div>
-                    <div class="details">
-                        <h5><?php echo $cart_item[$i]['name'] ?></h5>
-                        <p>Price: <span id="price"><?php echo $cart_item[$i]['price'] ?></span></p>
-                        <input type="number" id="quantity" value="<?php echo $cart_item[$i]['quantity'] ?>" onchange="onPress()">
-                        <p>Tổng thanh toán: <span id="total"></span>đ</p>
-                        <p >Mã Sản Phẩm: <span id="productId"><?php echo $cart_item[$i]['id'] ?></span></p>
-                        <button type="submit" class="btn btn-secondary">Mua Ngay</button>
-                    </div>
+                <?php
+                }
+                ?>
+                <p>Total: <span id="totalMoney"></span>đ</p>
+            </form>
 
-                </div>
-            <?php
-            }
-            ?>
 
         </div>
     </section>

@@ -5,6 +5,7 @@
 }
 
 /* nav bar */
+
 .navbar-brand {
   font-size: 30px !important;
   font-weight: 600;
@@ -120,4 +121,31 @@ button.btn-shopAll {
 button.btn-shopAll a {
   color: white;
   text-decoration: none;
+}
+.logout {
+  display: none;
+}
+
+#btn-log-out {
+  width: 100%;
+  border-radius: 10px;
+}
+
+li.user {
+  position: relative;
+}
+
+#btn-log-out a{
+  text-decoration: none;
+  color: black;
+}
+
+
+li.user:hover .logout{
+  display: block;
+  position: absolute;
+  bottom: -60%;
+  right: 5%;
+  z-index: 1;
+  width: 70%;
 }

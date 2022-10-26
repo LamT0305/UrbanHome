@@ -1,37 +1,47 @@
 <?php
-    include('./database/database.php');
-    if($_POST){
-        $name = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $address = $_POST['address'];
-        $confirmPwd1 = $_POST['ConfirmPwd'];
-        if($password !== $confirmPwd1){
-            ?>
-            <script>
-                alert('Password does not match!')
-            </script>
-            <?php
-        }else
+include('./dbconnect/database.php');
+if ($_POST) {
+    $name = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $address = $_POST['address'];
+    $confirmPwd1 = $_POST['ConfirmPwd'];
+    if ($password !== $confirmPwd1) {
+?>
+        <script>
+            alert('Password does not match!')
+        </script>
+        <?php
+    } else {
+        function sign_up($db, $name, $password, $email, $address)
         {
-            $result = sign_up($db, $name, $password, $email, $address);
-            if($result){
-                ?>
-                <script>
-                    alert("Sign up successfully!");
-                    window.location.href='login.php'
-                </script>
-                <?php
-            }else{
-                ?>
-                <script>
-                    alert('Sign up failed!')
-                </script>
-                <?php
-            }
+            $query = $db->prepare("INSERT INTO `user` (`name`, `password`, `email`, `address`) VALUES(:name, :password, :email, :address)");
+            $result = $query->execute([
+                "name" => $name,
+                "password" => $password,
+                "email" => $email,
+                "address" => $address
+            ]);
+            return $result;
         }
-    };
-    
+        $result = sign_up($db, $name, $password, $email, $address);
+        if ($result) {
+        ?>
+            <script>
+                alert("Sign up successfully!");
+                window.location.href = 'login.php'
+            </script>
+        <?php
+        } else {
+        ?>
+            <script>
+                alert('Sign up failed!')
+            </script>
+<?php
+        }
+    }
+};
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,22 +1,54 @@
-<?
-include("./database/database.php");
+<?php
+session_start();
+include("./dbconnect/database.php");
 if ($_GET && $_GET['id']) {
     $id = $_GET['id'];
     $products = getElementByID($db, $id);
     $product_img = getElementImagesByID($db, $id);
 }
+
 if ($_POST && $_POST['quantity']) {
+    if (!$_SESSION['user']) {
+?>
+        <script>
+            alert("Bạn vui lòng đăng nhập để thêm đồ vào giỏ hàng!");
+        </script>
+        <?php
+        header("location:login.php");
+    }
     $product_id = $_GET['id'];
     $quantity = $_POST['quantity'];
 
-    $result = addToCart($db, $product_id, $quantity);
-    if ($result) {
-?>
-        <script>
-            alert('Item is added to cart');
-        </script>
-<?php
 
+    $checkItems = getProductsInCart($db);
+    $isDuplicate = false;
+    for ($i = 0; $i < count($checkItems); $i++) {
+        if ($product_id == $checkItems[$i]['product_id']) {
+            $isDuplicate = true;
+            $currentQuantity = $checkItems[$i]["quantity"];
+        }
+    }
+    if (!$isDuplicate) {
+        $result = addToCart($db, $product_id, $quantity);
+        if ($result) {
+        ?>
+            <script>
+                alert("Your item is added!")
+            </script>
+<?php
+        }
+    } else {
+        // lay so luong cu
+
+        // Tao mot bien luu sl moi
+        $newQuantity = $currentQuantity + $quantity;
+        // update db
+        $updateQuantity = update_cart_item($db, $product_id, $newQuantity);
+        ?>
+            <script>
+                alert("Thêm vào giỏ hàng thành công")
+            </script>
+        <?php
     }
 }
 ?>
@@ -51,9 +83,25 @@ if ($_POST && $_POST['quantity']) {
                                 1900.636.699
                             </p>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item user">
                             <img src="https://img.icons8.com/fluency-systems-regular/32/000000/user.png" width="32px" height="32px" />
-                            <a class="des-about" href="./login.php" style="color:black;">Đăng Nhập/ Đăng Ký</a>
+                            <?php
+                            if ($_SESSION && $_SESSION['user']) {
+                                $user = $_SESSION['user'];
+
+                            ?>
+                                <p style="margin: 0;"><a style="color: black;" href="./myProfile.php"><?php echo $user['name'] ?></a></p>
+
+                                <div class="logout">
+                                    <button id="btn-log-out"><a href="logout.php">Logout</a></button>
+                                </div>
+                            <?php
+                            } else {
+                            ?>
+                                <a class="des-about" href="./login.php" style="color:black;">Đăng Nhập/ Đăng Ký</a>
+                            <?php
+                            }
+                            ?>
                         </li>
                         <li class="nav-item">
                             <img src="https://img.icons8.com/ios/32/000000/shopping-cart.png" width="32px" height="32px" />

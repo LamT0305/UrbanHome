@@ -1,11 +1,13 @@
 <?php
-include('./database/database.php');
+include('./dbconnect/database.php');
 if ($_POST) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     $user = LogIn($db, $email, $password);
     if ($user) {
+        session_start();
+        $_SESSION['user'] = $user;
 ?>
         <script>
             alert("Login Successfully");

@@ -28,9 +28,25 @@
                 1900.636.699
               </p>
             </li>
-            <li class="nav-item">
+            <li class="nav-item user">
               <img src="https://img.icons8.com/fluency-systems-regular/32/000000/user.png" width="32px" height="32px" />
-              <a class="des-about" href="./login.php" style="color:black;">Đăng Nhập/ Đăng Ký</a>
+              <?php
+              session_start();
+              if ($_SESSION && $_SESSION['user']) {
+                $user = $_SESSION['user']
+              ?>
+                <p style="margin: 0;"> <a style="color: black;" href="./myProfile.php"><?php echo $user['name'] ?></a> </p>
+                <div class="logout">
+                  <button id="btn-log-out"><a href="logout.php">Logout</a></button>
+                </div>
+              <?php
+              } else {
+              ?>
+                <a class="des-about" href="./login.php" style="color:black;">Đăng Nhập/ Đăng Ký</a>
+              <?php
+              }
+              ?>
+
             </li>
             <li class="nav-item">
               <img src="https://img.icons8.com/ios/32/000000/shopping-cart.png" width="32px" height="32px" />
@@ -180,7 +196,9 @@
       </button>
     </div>
   </section>
+  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>;
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src="./js/app.js"></script>
   <!-- Footer -->
   <footer class="text-center text-lg-start bg-white text-muted">
     <!-- Section: Social media -->

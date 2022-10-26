@@ -5,8 +5,7 @@ $password = "mysql";
 //create connection
 $db = null;
 $sofa1 = "sofa1";
-$sofa_corner = 'sofa_corner';
-$lamp = 'lamp';
+
 try {
     $db = new PDO('mysql:host=localhost; dbname=' . $db_name . ';charset=utf8', $username, $password);
 } catch (PDOException $e) {
@@ -79,20 +78,16 @@ function update_cart_item($db, $cart_item_id, $new_quantity)
 
     return $result;
 }
-function sign_up($db, $name, $password, $email, $address)
-{
-    $query = $db->prepare("INSERT INTO `user` (`name`, `password`, `email`, `address`) VALUES(:name, :password, :email, :address)");
-    $result = $query->execute([
-        "name" => $name,
-        "password" => $password,
-        "email" => $email,
-        "address" => $address
-    ]);
-    return $result;
-}
+
 function LogIn($db, $email, $password)
 {
     $query = $db->query("SELECT * FROM `user` WHERE email = '$email' AND password = '$password'");
     $user = $query->fetch(PDO::FETCH_ASSOC);
     return $user;
+}
+function getProductsInCart($db){
+    $query = $db -> query("SELECT * FROM `cart_item`");
+    $result = $query -> fetchAll(PDO::FETCH_ASSOC);
+
+    return $result;
 }
